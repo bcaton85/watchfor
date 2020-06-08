@@ -2,7 +2,7 @@
 
 ### Description
 
-Cli tool for running arbitrary bash commands when there is a change in the file system. 
+Cli tool for running arbitrary bash commands when notified of a change in the file system. 
 
 ### Usage
 
