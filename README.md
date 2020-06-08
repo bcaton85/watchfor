@@ -10,5 +10,7 @@ Cli tool for running arbitrary bash commands when notified of a change in the fi
 
 `watchfor ProjectDir -- docker build . -t myimage`
 
+`watchfor ProjectDir -- terraform plan`
+
 `watchfor ProjectDir -- dotnet run`
 
