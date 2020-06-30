@@ -56,9 +56,5 @@ func main() {
 
 func executeCommand(commandWithArgs []string) {
 	cmd := exec.Command(commandWithArgs[0], commandWithArgs[1:]...)
-	stdout, err := cmd.Output()
-	if err != nil {
-		log.Fatal(err)
-	}
 	log.Println(string(stdout))
 }
