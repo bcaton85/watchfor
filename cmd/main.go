@@ -56,5 +56,6 @@ func main() {
 
 func executeCommand(commandWithArgs []string) {
 	cmd := exec.Command(commandWithArgs[0], commandWithArgs[1:]...)
+	stdout, _ := cmd.Output()
 	log.Println(string(stdout))
 }
