@@ -1,61 +1,24 @@
+/*
+Copyright © 2020 NAME HERE <EMAIL ADDRESS>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 package main
 
 import (
-	"log"
-	"os"
-	"os/exec"
-
-	"github.com/fsnotify/fsnotify"
+	"watchfor/cmd"
 )
 
 func main() {
-	directory := os.Args[1]
-	log.Printf("Listening on file path: \"%v\"", directory)
-	if os.Args[2] != "--" {
-		log.Fatal("Illegal format")
-	}
-
-	commandWithArgs := os.Args[3:]
-
-	watcher, err := fsnotify.NewWatcher()
-	if err != nil {
-		return
-	}
-
-	defer watcher.Close()
-
-	done := make(chan bool)
-
-	go func() {
-		for {
-			select {
-			case _, ok := <-watcher.Events:
-				if !ok {
-					return
-				}
-
-				log.Println("Change in directory, running command...")
-				executeCommand(commandWithArgs)
-
-			case err, ok := <-watcher.Errors:
-				if !ok {
-					return
-				}
-				log.Println(err)
-			}
-		}
-	}()
-
-	err = watcher.Add(directory)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	<-done
-}
-
-func executeCommand(commandWithArgs []string) {
-	cmd := exec.Command(commandWithArgs[0], commandWithArgs[1:]...)
-	stdout, _ := cmd.Output()
-	log.Println(string(stdout))
+	cmd.Execute()
 }

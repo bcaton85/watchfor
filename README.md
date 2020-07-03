@@ -6,11 +6,11 @@ Cli tool for running arbitrary bash commands when notified of a change in the fi
 
 ### Usage
 
-`watchfor DIRECTORY -- COMMAND COMMAND_ARG_1 COMMAND_ARG_2 COMMAND_ARG_3...`
+`watchfor DIRECTORY 'COMMAND'`
 
-`watchfor ProjectDir -- docker build . -t myimage`
+`watchfor ProjectDir 'docker build . -t myimage'`
 
-`watchfor ProjectDir -- terraform plan`
+`watchfor ProjectDir 'terraform plan'`
 
-`watchfor ProjectDir -- dotnet run`
+`watchfor ProjectDir 'dotnet run'`
 
